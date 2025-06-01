@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>In Loving Memory of Bradley H</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #b22222; /* Deep red */
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #8b0000; /* Dark red */
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #b22222;
+      margin-bottom: 20px;
+    }
+
+    .quote-box {
+      position: relative;
+      height: 100px;
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #555;
+      text-align: center;
+    }
+
+    .quote {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .quote.active {
+      opacity: 1;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .guestbook-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guestbook-form input,
+    .guestbook-form textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .guestbook-form button {
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #b22222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .guestbook-form button:hover {
+      background-color: #8b0000;
+    }
+
+    .messages {
+      margin-top: 20px;
+    }
+
+    .message {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    footer {
+      background-color: #f8f8f8;
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>In Loving Memory of Bradley H</h1>
+    <p>1976 – 2025</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Bradley</a>
+    <a href="#quotes">Family Quotes</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#guestbook">Guestbook</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Bradley</h2>
+    <p>
+      Bradley H was a beacon of love, kindness, and resilience. Born with a condition that affected his brain, he defied expectations and led a life full of warmth and compassion. At 49, Bradley continued to inspire everyone around him with his unwavering spirit and the joy he brought into every room. He was truly loving, caring, and sweet—a testament to the strength of the human spirit.
+    </p>
+  </section>
+
+  <section id="quotes">
+    <h2>Family Quotes</h2>
+    <div class="quote-box">
+      <div class="quote active">"Bradley had a heart bigger than the world."</div>
+      <div class="quote">"His smile could light up the darkest room."</div>
+      <div class="quote">"A gentle soul who taught us the meaning of love."</div>
+      <div class="quote">"Bradley's laughter was the soundtrack of our family."</div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/200x150?text=Bradley+1" alt="Bradley 1">
+      <img src="https://via.placeholder.com/200x150?text=Bradley+2" alt="Bradley 2">
+      <img src="https://via.placeholder.com/200x150?text=Bradley+3" alt="Bradley 3">
+      <img src="https://via.placeholder.com/200x150?text=Bradley+4" alt="Bradley 4">
+    </div>
+  </section>
+
+  <section id="guestbook">
+    <h2>Guestbook</h2>
+    <form class="guestbook-form" id="guestbook-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="messages" id="messages">
+      <!-- Guestbook messages will appear here -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 In Loving Memory of Bradley H
+  </footer>
+
+  <script>
+    // Quotes rotation
+    const quotes = document.querySelectorAll('.quote');
+    let current = 0;
+
+    setInterval(() => {
+      quotes[current].classList.remove('active');
+      current = (current + 1) % quotes.length;
+      quotes[current].classList.add('active');
+    }, 4000);
+
+    // Guestbook functionality
+    const form = document.getElementById('guestbook-form');
+    const messagesDiv = document.getElementById('messages');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (name && message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+        messagesDiv.prepend(messageDiv);
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
