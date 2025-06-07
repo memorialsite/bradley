@@ -1,224 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>In Loving Memory of Bradley H</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Brad W. Halicki Memorial</title>
   <style>
-    body {
-      margin: 0;
-      font-family: cursive;
-      background-color: #fff;
-      color: #333;
-      
+    body { margin:0; font-family:cursive, sans-serif; background:#fff; color:#333; }
+    header { background:#b22222; color:#fff; text-align:center; padding:30px 20px; }
+    .tabs { display:flex; flex-wrap:wrap; background:#8b0000; }
+    .tabs button {
+      flex:1; padding:15px; border:none; background:none;
+      color:#fff; font-weight:bold; cursor:pointer;
+      transition:background 0.3s;
     }
-
-    header {
-      background-color: #b22222; /* Deep red */
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
+    .tabs button.active, .tabs button:hover { background:#a50000; }
+    .tabcontent {
+      display:none; padding:30px 20px; max-width:800px; margin:auto;
+      animation:fade 0.5s;
     }
-
-    nav {
-      background-color: #8b0000; /* Dark red */
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h2 {
-      color: #b22222;
-      margin-bottom: 20px;
-    }
-
-    .quote-box {
-      position: relative;
-      height: 100px;
-      margin-top: 20px;
-      font-style: italic;
-      font-size: 1.2rem;
-      color: #555;
-      text-align: center;
-    }
-
-    .quote {
-      position: absolute;
-      width: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .quote.active {
-      opacity: 1;
-    }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .guestbook-form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .guestbook-form input,
-    .guestbook-form textarea {
-      margin-bottom: 10px;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .guestbook-form button {
-      padding: 10px;
-      font-size: 1rem;
-      background-color: #b22222;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .guestbook-form button:hover {
-      background-color: #8b0000;
-    }
-
-    .messages {
-      margin-top: 20px;
-    }
-
-    .message {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    footer {
-      background-color: #f8f8f8;
-      text-align: center;
-      padding: 20px;
-      color: #888;
-      font-size: 0.9rem;
-    }
+    .tabcontent.active { display:block; }
+    @keyframes fade { from {opacity:0;} to {opacity:1;} }
+    .quote-box { position:relative; height:80px; font-style:italic; color:#555; text-align:center; }
+    .quote { position:absolute; width:100%; opacity:0; transition:opacity 1s; }
+    .quote.active { opacity:1; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+    .gallery img { width:100%; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    .timeline { list-style:none; padding:0; }
+    .timeline li { margin-bottom:15px; }
+    .share { text-align:center; margin:20px; }
+    .share a { margin:0 10px; color:#b22222; text-decoration:none; font-size:1.1rem; }
+    footer { background:#f8f8f8; text-align:center; padding:20px; color:#888; font-size:0.9rem; }
+    @media(max-width:600px){ .tabs button { font-size:14px; padding:10px; } }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>In Loving Memory of Bradley H</h1>
-    <p>1976 – 2025</p>
-  </header>
+<header>
+  <h1>In Loving Memory</h1>
+  <p><strong>Brad W. Halicki</strong><br>3/19/1976 – 6/2/2025</p>
+</header>
 
-  <nav>
-    <a href="#about">About Bradley</a>
-    <a href="#quotes">Family Quotes</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#guestbook">Guestbook</a>
-  </nav>
+<div class="tabs">
+  <button class="tablink active" onclick="openTab('about')">About</button>
+  <button class="tablink" onclick="openTab('favorites')">Favorites</button>
+  <button class="tablink" onclick="openTab('quotes')">Quotes</button>
+  <button class="tablink" onclick="openTab('gallery')">Gallery</button>
+  <button class="tablink" onclick="openTab('timeline')">Timeline</button>
+  <button class="tablink" onclick="openTab('info')">Info</button>
+  <button class="tablink" onclick="openTab('share')">Share</button>
+</div>
 
-  <section id="about">
-    <h2>About Bradley</h2>
-    <p>
-      Bradley H was a beacon of love, kindness, and resilience. Born with a condition that affected his brain, he defied expectations and led a life full of warmth and compassion. At 49, Bradley continued to inspire everyone around him with his unwavering spirit and the joy he brought into every room. He was truly loving, caring, and sweet—a testament to the strength of the human spirit.
-    </p>
-  </section>
+<section id="about" class="tabcontent active">
+  <h2>About Brad</h2>
+  <p>Brad W. Halicki was a loving, caring, and sweet man who lived with a brain condition since birth but never let it define him. Despite challenges, he remained generous, goofy, and encouraging, making everyone feel special. His spirit was infectious—and his warm “hey mum” always brought smiles.</p>
+</section>
 
-  <section id="quotes">
-    <h2>Family Quotes</h2>
-    <div class="quote-box">
-      <div class="quote active">"Bradley had a heart bigger than the world."</div>
-      <div class="quote">"His smile could light up the darkest room."</div>
-      <div class="quote">"A gentle soul who taught us the meaning of love."</div>
-      <div class="quote">"Bradley's laughter was the soundtrack of our family."</div>
-    </div>
-  </section>
+<section id="favorites" class="tabcontent">
+  <h2>Favorites & Passions</h2>
+  <ul>
+    <li>Pepsi, chocolate chip cookies, meatball & Philly cheesesteak hoagies, cheese balls</li>
+    <li>Gardening—especially pulling weeds</li>
+    <li>Competitive at spoons card game</li>
+    <li>Fishing, boating, bowling, Steelers and baseball games</li>
+    <li>Avid football fan</li>
+    <li>Dog dad to Nemo & Choochie</li>
+    <li>Early riser, late nighter—always hungry</li>
+    <li>Favorite songs: *Celebration*, *I’m Too Sexy*, *It Wasn’t Me*, *My Girl*</li>
+    <li>Enjoyed cooking shows (Emerald), scary movies</li>
+    <li>Hated the news, loved his chair and the remote</li>
+    <li>Co‑pilot champion—checked car oil, navigated trips</li>
+    <li>Loved drive‑ins, music-in-the-park, and flirting</li>
+    <li>Cared deeply—loved buying dinner for loved ones</li>
+  </ul>
+</section>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/200x150?text=Bradley+1" alt="Bradley 1">
-      <img src="https://via.placeholder.com/200x150?text=Bradley+2" alt="Bradley 2">
-      <img src="https://via.placeholder.com/200x150?text=Bradley+3" alt="Bradley 3">
-      <img src="https://via.placeholder.com/200x150?text=Bradley+4" alt="Bradley 4">
-    </div>
-  </section>
+<section id="quotes" class="tabcontent">
+  <h2>Family Quotes</h2>
+  <div class="quote-box">
+    <div class="quote active">“Everyone thought they were Brad’s favorite—and they absolutely were.”</div>
+    <div class="quote">“Brad was a legend. He loved everyone just as they were.”</div>
+    <div class="quote">“He encouraged us to be happy and better people.”</div>
+    <div class="quote">“He loved making people smile—an absolute goof ball.”</div>
+  </div>
+</section>
 
-  <section id="guestbook">
-    <h2>Guestbook</h2>
-    <form class="guestbook-form" id="guestbook-form">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <div class="messages" id="messages">
-      <!-- Guestbook messages will appear here -->
-    </div>
-  </section>
+<section id="gallery" class="tabcontent">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <!-- Replace with actual photos -->
+    <img src="https://via.placeholder.com/300x200?text=Brad+Family" alt="Brad with family">
+    <img src="https://via.placeholder.com/300x200?text=Brad+Gardening" alt="Brad gardening">
+    <img src="https://via.placeholder.com/300x200?text=Brad+Fishing" alt="Brad fishing">
+    <img src="https://via.placeholder.com/300x200?text=Brad+Game+Night" alt="Brad at game night">
+  </div>
+</section>
 
-  <footer>
-    &copy; 2025 In Loving Memory of Bradley H
-  </footer>
+<section id="timeline" class="tabcontent">
+  <h2>Life Timeline</h2>
+  <ul class="timeline">
+    <li><strong>1976</strong>: Born with a brain condition—beloved from the start.</li>
+    <li><strong>2000s–2025</strong>: Filled life with music, travel, sports, laughter, and love.</li>
+    <li><strong>June 2, 2025</strong>: Celebration of life event (date TBD); no burial/viewing.</li>
+  </ul>
+</section>
 
-  <script>
-    // Quotes rotation
-    const quotes = document.querySelectorAll('.quote');
-    let current = 0;
+<section id="info" class="tabcontent">
+  <h2>Celebration & Donations</h2>
+  <p>Please do not send flowers. Donations are appreciated and will go toward Brad’s celebration of life (date TBD).</p>
+  <p>He passed with grace and joy—leaving behind a legacy of love, laughter, and generosity.</p>
+</section>
 
-    setInterval(() => {
-      quotes[current].classList.remove('active');
-      current = (current + 1) % quotes.length;
-      quotes[current].classList.add('active');
-    }, 4000);
+<section id="share" class="tabcontent">
+  <h2>Share This Memorial</h2>
+  <div class="share">
+    <a href="https://twitter.com/intent/tweet?text=Remembering+Brad+W.+Halicki+(1976–2025)&url=" target="_blank" rel="noopener">Tweet</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener">Share on Facebook</a>
+    <a href="mailto:?subject=Remembering Brad W. Halicki&body=In loving memory of Brad W. Halicki (1976–2025).">Email a Friend</a>
+  </div>
+</section>
 
-    // Guestbook functionality
-    const form = document.getElementById('guestbook-form');
-    const messagesDiv = document.getElementById('messages');
+<footer>
+  © 2025, Dom (Memorialsite) inc
+</footer>
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const message = document.getElementById('message').value.trim();
+<script>
+  function openTab(tabId) {
+    document.querySelectorAll('.tabcontent').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.tablink').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
 
-      if (name && message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
-        messagesDiv.prepend(messageDiv);
-        form.reset();
-      }
-    });
-  </script>
+
+  const quotes = document.querySelectorAll('.quote');
+  let idx = 0;
+  setInterval(() => {
+    quotes[idx].classList.remove('active');
+    idx = (idx + 1) % quotes.length;
+    quotes[idx].classList.add('active');
+  }, 4000);
+</script>
 
 </body>
 </html>
